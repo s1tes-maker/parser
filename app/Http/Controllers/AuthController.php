@@ -39,7 +39,6 @@ class AuthController extends Controller
             'password' => 'required|string'
         ]);
 
-
         if(Auth::attempt($credentials)) {
             return response()->json(['status'=>200, 'body'=>['value'=>Auth::user()->getRememberToken()]]);
         }
