@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="399fc626-625c-4828-9065-c1280d2bcb95" name="jino_parsing" url="http://ovz1.wallc.gmzem.vps.myjino.ru/">
+        <fileTransfer accessType="SFTP" host="ovz1.wallc.gmzem.vps.myjino.ru" port="49171" sshConfigId="e8d84e36-9ccc-4d8b-b170-a2eb62ef4387" sshConfig="root@ovz1.wallc.gmzem.vps.myjino.ru:49171 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
