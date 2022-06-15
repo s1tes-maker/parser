@@ -2,8 +2,15 @@
 
 $path = "../var/www/domains/ovz1.wallc.gmzem.vps.myjino.ru/";
 
+//копировать из .gitignore секретные файлы
+$output = shell_exec('cp -r forcopy/* ' . $path);
+echo $output;
+
 //artisan
-$output = shell_exec('php ' .$path. 'artisan migrate');
+//$output = shell_exec('php ' .$path. 'artisan migrate');
+//echo $output;
+
+$output = shell_exec('php ' .$path. 'artisan key:generate');
 echo $output;
 
 $output = shell_exec('php ' .$path. 'artisan storage:link');
@@ -13,10 +20,6 @@ $output = shell_exec('php ' .$path. 'artisan cache:clear');
 echo $output;
 
 $output = shell_exec('php ' .$path. 'artisan config:cache');
-echo $output;
-
-//копировать из .gitignore секретные файлы
-$output = shell_exec('cp -r forcopy/* ' . $path);
 echo $output;
 
 //права на папки
