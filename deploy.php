@@ -7,8 +7,12 @@ $output = shell_exec('cp -r forcopy/* ' . $path);
 echo $output;
 
 //artisan
-//$output = shell_exec('php ' .$path. 'artisan migrate');
-//echo $output;
+$output = shell_exec('php ' .$path. 'artisan migrate');
+echo $output;
+
+//artisan
+$output = shell_exec('php ' .$path. 'artisan db:seed');
+echo $output;
 
 $output = shell_exec('php ' .$path. 'artisan key:generate');
 echo $output;
