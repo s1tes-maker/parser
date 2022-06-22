@@ -23,7 +23,7 @@ jobs:
           USERNAME: ${{ secrets.SSH_USER }}
           PASSWORD: ${{ secrets.SSH_PASSWORD }}
           PORT: ${{ secrets.SSH_PORT }}
-          script: rm -rf ../var/www/domains/${{ secrets.SSH_HOST }}/*
+          script: rm -rf ../var/www/domains/${{ secrets.SSH_HOST }}
       - name: Copy repository contents via scp
         uses: appleboy/scp-action@master
         env:
