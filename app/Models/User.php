@@ -12,7 +12,6 @@ use App\Traits\HasRolesAndPermissions;
 class User extends Authenticatable
 {
 
-
      use HasApiTokens, HasFactory, Notifiable;
 
     /**
