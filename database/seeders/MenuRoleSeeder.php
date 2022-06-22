@@ -14,8 +14,8 @@ class MenuRolesSeeder extends Seeder
      */
     public function run()
     {
-        if(DB::table('menu_roles')->count() != 0) return;
-        DB::table('menu_roles')->insert([
+        if(DB::table('menu_role')->count() != 0) return;
+        DB::table('menu_role')->insert([
             ['menu_id' => 1, 'role_id' => 1],
             ['menu_id' => 2, 'role_id' => 1],
             ['menu_id' => 2, 'role_id' => 2],
