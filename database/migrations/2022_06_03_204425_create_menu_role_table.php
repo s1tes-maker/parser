@@ -14,7 +14,7 @@ class CreateMenuRolesTable extends Migration
     public function up()
     {
         $this->down();
-        Schema::create('menu_roles', function (Blueprint $table) {
+        Schema::create('menu_role', function (Blueprint $table) {
             $table->id();
             $table->integer('menu_id')->index();
             $table->integer('role_id')->index();
@@ -29,6 +29,6 @@ class CreateMenuRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menu_roles');
+        Schema::dropIfExists('menu_role');
     }
 }
