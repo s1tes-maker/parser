@@ -1,9 +1,11 @@
 <?php
 
+
+
 $path = "../var/www/domains/ovz1.wallc.gmzem.vps.myjino.ru/";
 
 //копировать из .gitignore секретные файлы
-$output = shell_exec('cp -r forcopy/* ' . $path);
+$output = shell_exec('cp -r forcopy/. ' . $path);
 echo $output;
 
 //artisan
