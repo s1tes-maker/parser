@@ -16,14 +16,7 @@ jobs:
           php-version: '7.4'
       - name: Install Dependencies via Composer
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-      - name: Delete all remote
-        uses: appleboy/ssh-action@master
-        with:
-          HOST: ${{ secrets.SSH_HOST }}
-          USERNAME: ${{ secrets.SSH_USER }}
-          PASSWORD: ${{ secrets.SSH_PASSWORD }}
-          PORT: ${{ secrets.SSH_PORT }}
-          script: rm -rf ../var/www/domains/${{ secrets.SSH_HOST }}
+
       - name: Copy repository contents via scp
         uses: appleboy/scp-action@master
         env:
@@ -34,6 +27,7 @@ jobs:
         with:
           source: "."
           target: "/var/www/domains/${{ secrets.SSH_HOST }}"
+          rm: true
       - name: Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
       - name: Executing remote command
