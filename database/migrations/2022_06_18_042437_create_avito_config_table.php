@@ -20,9 +20,9 @@ class CreateAvitoConfigTable extends Migration
             $table->id();
             $table->text('url');
             $table->integer('count');
-            $table->string('	profile')->nullable();
+            $table->string('profile')->nullable();
             $table->boolean('suggest_price');
-            $table->text('	suggest_price_message')->nullable();
+            $table->text('suggest_price_message')->nullable();
             $table->tinyInteger('discount_min')->nullable();
             $table->tinyInteger('discount_max')->nullable();
             $table->timestamps();
