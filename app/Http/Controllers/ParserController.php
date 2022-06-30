@@ -41,7 +41,7 @@ class ParserController extends Controller
             }
         }
 
-        $deleted = DB::connection('mysql2')->table('configs')->delete();
+        $deleted = DB::connection('mysql2')->table('configs')->whereNull('processing')->delete();
 
         $config = Config::create([
             'avito_data' =>[
