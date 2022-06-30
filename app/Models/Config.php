@@ -10,6 +10,9 @@ class Config extends Model
     use HasFactory;
     protected $connection = "mysql2";
     protected $table = "configs";
+    protected $casts = [
+        'avito_data' => 'array'
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -17,6 +20,6 @@ class Config extends Model
      * @var array
      */
     protected $fillable = [
-        'url', 'count', 'profile', 'suggest_price', 'suggest_price_message', 'discount_min', 'discount_max'
+        'avito_data'
     ];
 }

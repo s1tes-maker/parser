@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAvitoConfigTable extends Migration
+class CreateParserConfigsTable extends Migration
 {
     protected $connection = "mysql2";
 
@@ -18,13 +18,8 @@ class CreateAvitoConfigTable extends Migration
         $this->down();
         Schema::create('configs', function (Blueprint $table) {
             $table->id();
-            $table->text('url');
-            $table->integer('count');
-            $table->string('profile')->nullable();
-            $table->boolean('suggest_price');
-            $table->text('suggest_price_message')->nullable();
-            $table->tinyInteger('discount_min')->nullable();
-            $table->tinyInteger('discount_max')->nullable();
+            $table->json('avito_data');
+            $table->boolean('processing')->nullable();
             $table->timestamps();
         });
     }

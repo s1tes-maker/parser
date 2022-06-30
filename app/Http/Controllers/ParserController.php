@@ -44,13 +44,15 @@ class ParserController extends Controller
         $deleted = DB::connection('mysql2')->table('configs')->delete();
 
         $config = Config::create([
-            'url' => $input['url'],
-            'count' => $input['count'],
-            'suggest_price' => $input['suggest_price'] == "true" ? 1 : 0,
-            'suggest_price_message' => $input['suggest_price_message'] ?? null,
-            'discount_min' => $input['discount']['min'],
-            'discount_max' => $input['discount']['max']
-        ]);
+            'avito_data' =>[
+                'url' => $input['url'],
+                'count' => $input['count'],
+                'suggest_price' => $input['suggest_price'] == "true" ? 1 : 0,
+                'suggest_price_message' => $input['suggest_price_message'] ?? null,
+                'discount_min' => $input['discount']['min'],
+                'discount_max' => $input['discount']['max']
+                ]
+            ]);
 
         return response()->json([
             'status'=>200] );
