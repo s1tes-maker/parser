@@ -25,6 +25,9 @@ echo $output;
 $output = shell_exec('php ' .$path. 'artisan cache:clear');
 echo $output;
 
+$output = shell_exec('php ' .$path. 'artisan config:clear');
+echo $output;
+
 $output = shell_exec('php ' .$path. 'artisan config:cache');
 echo $output;
 
