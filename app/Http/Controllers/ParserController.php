@@ -56,9 +56,10 @@ class ParserController extends Controller
                 'discount_max' => $input['discount']['max']
                 ]
             ]);
-        if(env('APP_ENV') == 'local')
-            chdir(env('PATH_TO_PYTHON_EXECUTE'));
-        $process = new Process(['python', env('PATH_TO_PYTHON_PARSER_SCRIPT')]);
+
+        if(\Config::get('app.env') == 'local')
+            chdir(\Config::get('app.path_to_python_execute'));
+        $process = new Process(['python', \Config::get('app.path_to_python_parser_script')]);
         //$process = new Process(['python', '-V']);
         $process->run();
 

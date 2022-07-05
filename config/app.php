@@ -122,6 +122,8 @@ return [
     'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
+    'path_to_python_execute' => env('PATH_TO_PYTHON_EXECUTE'),
+    'path_to_python_parser_script' => env('PATH_TO_PYTHON_PARSER_SCRIPT'),
 
     /*
     |--------------------------------------------------------------------------
