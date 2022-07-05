@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Models\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+
+
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class ParserController extends Controller
 {
@@ -48,12 +51,22 @@ class ParserController extends Controller
                 'url' => $input['url'],
                 'count' => $input['count'],
                 'suggest_price' => $input['suggest_price'] == "true" ? 1 : 0,
-                'suggest_price_message' => $input['suggest_price_message'] ?? null,
+                'suggest_price_message' => $input['suggest_price_message'] ?? '',
                 'discount_min' => $input['discount']['min'],
                 'discount_max' => $input['discount']['max']
                 ]
             ]);
+        if(env('APP_ENV') == 'local')
+            chdir(env('PATH_TO_PYTHON_EXECUTE'));
+        $process = new Process(['python', env('PATH_TO_PYTHON_PARSER_SCRIPT')]);
+        //$process = new Process(['python', '-V']);
+        $process->run();
 
+        if (!$process->isSuccessful()) {
+            return $process->getErrorOutput();
+        }
+
+        return $process->getOutput();
         return response()->json([
             'status'=>200] );
     }
