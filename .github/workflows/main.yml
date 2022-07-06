@@ -28,8 +28,7 @@ jobs:
           source: "."
           target: "/var/www/domains/${{ secrets.SSH_HOST }}"
           rm: true
-      - name: Directory Permissions
-        run: chmod -R 777 deploy.sh
+
       - name: Executing remote command
         uses: appleboy/ssh-action@master
         with:
@@ -37,5 +36,8 @@ jobs:
           USERNAME: ${{ secrets.SSH_USER }}
           PASSWORD: ${{ secrets.SSH_PASSWORD }}
           PORT: ${{ secrets.SSH_PORT }}
-          script: ../var/www/domains/${{ secrets.SSH_HOST }}/deploy.sh
+          script: |
+            cd ../var/www/domains/${{ secrets.SSH_HOST }}
+            chmod -R 777 deploy.sh
+            ./deploy.sh
 
