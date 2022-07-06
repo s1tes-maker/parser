@@ -37,5 +37,5 @@ jobs:
           USERNAME: ${{ secrets.SSH_USER }}
           PASSWORD: ${{ secrets.SSH_PASSWORD }}
           PORT: ${{ secrets.SSH_PORT }}
-          script: php ../var/www/domains/${{ secrets.SSH_HOST }}/deploy.php
+          script: ../var/www/domains/${{ secrets.SSH_HOST }}/deploy.sh
 
