@@ -1,8 +1,8 @@
 #!/bin/bash
 readonly path="../var/www/domains/ovz1.wallc.gmzem.vps.myjino.ru/"
 pwd
-cp -r ../../cgi-bin/forcopy/ $path
-cd $path
+cp -r ../../cgi-bin/forcopy/ .
+
 php artisan migrate
 php artisan db:seed
 php artisan key:generate
