@@ -57,10 +57,11 @@ class ParserController extends Controller
                 ]
             ]);
 
-        if(\Config::get('app.env') == 'local')
-            chdir(\Config::get('app.path_to_python_execute'));
+
+        chdir(\Config::get('app.path_to_python_venv'));
         $process = new Process(['python', \Config::get('app.path_to_python_parser_script')]);
         //$process = new Process(['python', '-V']);
+        //$process = new Process(['venv\Scripts\activate']);
         $process->run();
 
         if (!$process->isSuccessful()) {
