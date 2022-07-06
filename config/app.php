@@ -123,7 +123,7 @@ return [
 
     'cipher' => 'AES-256-CBC',
     'path_to_python_parser_script' => env('PATH_TO_PYTHON_PARSER_SCRIPT'),
-    'path_to_python_venv' => env('PATH_TO_PYTHON_VENV'),
+    'run_python_filename' => env('RUN_PYTHON_FILENAME'),
 
     /*
     |--------------------------------------------------------------------------
