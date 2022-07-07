@@ -61,7 +61,7 @@ class ParserController extends Controller
 
         $array_cmd = ( \Config::get('app.env') == 'local' ?
             ['start', '/B',\Config::get('app.run_python_filename')] :
-            [\Config::get('app.run_python_filename')]);
+            ['./' . \Config::get('app.run_python_filename')]);
         $process = new Process($array_cmd);
 
         $process->run();
