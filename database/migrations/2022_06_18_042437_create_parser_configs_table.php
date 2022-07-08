@@ -19,6 +19,7 @@ class CreateParserConfigsTable extends Migration
         Schema::create('configs', function (Blueprint $table) {
             $table->id();
             $table->json('avito_data');
+            $table->integer('process_id')->unique();
             $table->boolean('processing')->nullable();
             $table->timestamps();
         });
