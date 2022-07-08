@@ -20,6 +20,6 @@ class Config extends Model
      * @var array
      */
     protected $fillable = [
-        'avito_data'
+        'avito_data', 'process_id'
     ];
 }

@@ -54,7 +54,8 @@ class ParserController extends Controller
                 'suggest_price_message' => $input['suggest_price_message'] ?? '',
                 'discount_min' => $input['discount']['min'],
                 'discount_max' => $input['discount']['max']
-                ]
+                ],
+            'process_id' => random_int(100000, 999999)
             ]);
 
         chdir(\Config::get('app.path_to_python_parser_script'));
@@ -67,11 +68,13 @@ class ParserController extends Controller
         $process->run();
 
         if (!$process->isSuccessful()) {
-            return $process->getErrorOutput();
+            return response()->json([
+                'status'=>422,
+                'message'=>$process->getErrorOutput()] )->setStatusCode(422);
         }
 
-        return $process->getOutput();
         return response()->json([
-            'status'=>200] );
+            'status'=>200,
+            'message'=>$process->getOutput()] );
     }
 }
