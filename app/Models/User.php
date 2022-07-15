@@ -46,5 +46,9 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public function python_processes()
+    {
+        return $this->hasMany(Config::class);
+    }
 
 }

@@ -7,13 +7,15 @@ use App\Models\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-
 use Symfony\Component\Process\Process;
-use Symfony\Component\Process\Exception\ProcessFailedException;
+
 
 class ParserController extends Controller
 {
     public function parse(Request $request) {
+        if(!$user = $request->user()) {
+            response()->json(['status'=>401]);
+        }
 
         $input = $request->all();
 
@@ -44,7 +46,7 @@ class ParserController extends Controller
             }
         }
 
-        $deleted = DB::connection('mysql2')->table('configs')->whereNull('processing')->delete();
+        $deleted = DB::connection('mysql2')->table('configs')->whereNull('status')->delete();
 
         $config = Config::create([
             'avito_data' =>[
@@ -55,14 +57,16 @@ class ParserController extends Controller
                 'discount_min' => $input['discount']['min'],
                 'discount_max' => $input['discount']['max']
                 ],
-            'process_id' => random_int(100000, 999999)
+            'process_id' => random_int(100000, 999999),
+            'status' => 'transfer_control_to_parser',
+            'user_id' => $user->id
             ]);
 
         chdir(\Config::get('app.path_to_python_parser_script'));
 
         $array_cmd = ( \Config::get('app.env') == 'local' ?
-            ['start', '/B',\Config::get('app.run_python_filename')] :
-            ['./' . \Config::get('app.run_python_filename')]);
+            ['start', '/B',\Config::get('app.run_python_filename'), $config->process_id] :
+            ['./' . \Config::get('app.run_python_filename'), $config->process_id]);
         $process = new Process($array_cmd);
 
         $process->run();
@@ -75,6 +79,16 @@ class ParserController extends Controller
 
         return response()->json([
             'status'=>200,
-            'message'=>$process->getOutput()] );
+            'process_id'=>$config->process_id] );
+    }
+
+    public function process_statuses(Request $request) {
+        if(!$user = $request->user()) {
+            response()->json(['status'=>401]);
+        }
+
+        return response()->json([
+            'status'=>200,
+            'body'=>$user->python_processes] );
     }
 }

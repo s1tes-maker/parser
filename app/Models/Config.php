@@ -14,12 +14,13 @@ class Config extends Model
         'avito_data' => 'array'
     ];
 
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'avito_data', 'process_id'
+        'avito_data', 'process_id', 'user_id', 'status'
     ];
 }

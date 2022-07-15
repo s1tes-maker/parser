@@ -17,23 +17,16 @@ class MenuSeeder extends Seeder
         if(DB::table('menus')->count() != 0) return;
         DB::table('menus')->insert([
             [
-                'title' => 'start',
+                'title' => 'Настройка запуска',
                 'key' => 'Home',
                 'icon' => 'icon-cog',
                 'order'=> 1],
 
             [
-                'title' => 'Профили Авито',
-                'key' => 'profiles',
+                'title' => 'Мониторинг процессов',
+                'key' => 'statuses',
                 'icon' => 'icon-paper',
-                'order'=> 2],
-
-            [
-                'title' => 'dop',
-                'key' => 'dop',
-                'icon' => NULL,
-                'order'=> 3]
-
+                'order'=> 2]
         ]);
     }
 }

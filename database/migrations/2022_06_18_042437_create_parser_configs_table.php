@@ -20,7 +20,8 @@ class CreateParserConfigsTable extends Migration
             $table->id();
             $table->json('avito_data');
             $table->integer('process_id')->unique();
-            $table->boolean('processing')->nullable();
+            $table->string('status')->nullable();
+            $table->integer('user_id')->nullable();
             $table->timestamps();
         });
     }

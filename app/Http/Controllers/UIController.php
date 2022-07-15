@@ -19,11 +19,18 @@ class UIController extends Controller
         return response()->json(['status'=>200, 'body'=>$menus]);
     }
 
-    public function main_full_menu(Request $request) {
+    public function auth_page(Request $request) {
         if(!$user = $request->user()) {
             response()->json(['status'=>401]);
         }
 
-        return response()->json(['status'=>200, 'body'=>Menu::all()]);
+        if(!$punkt_menu = Menu::where('key', $request->page_name)->first())
+            return response()->json(['status'=>200, 'message'=>404]);
+
+        $role = $user->role;
+        if(!$punkt_menu = Role::find($role->id)->menus()->where('key', $request->page_name)->first())
+            return response()->json(['status'=>200, 'message'=>403]);
+
+        return response()->json(['status'=>200, 'message'=>200]);
     }
 }

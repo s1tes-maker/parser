@@ -21,6 +21,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::group(['middleware'=>'auth:sanctum'], function () {
     Route::get('/main-menu', [UIController::class, 'main_menu']);
-    Route::get('/main-full-menu', [UIController::class, 'main_full_menu']);
+    Route::get('/auth-page', [UIController::class, 'auth_page']);
     Route::post('/parse', [ParserController::class, 'parse']);
+    Route::get('/process-statuses', [ParserController::class, 'process_statuses']);
 });
