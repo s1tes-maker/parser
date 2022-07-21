@@ -22,6 +22,7 @@ class CreateParserConfigsTable extends Migration
             $table->integer('process_id')->unique();
             $table->string('status')->nullable();
             $table->integer('user_id')->nullable();
+            $table->text('python_message')->nullable();
             $table->timestamps();
         });
     }

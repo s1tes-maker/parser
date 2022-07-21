@@ -24,4 +24,5 @@ Route::group(['middleware'=>'auth:sanctum'], function () {
     Route::get('/auth-page', [UIController::class, 'auth_page']);
     Route::post('/parse', [ParserController::class, 'parse']);
     Route::get('/process-statuses', [ParserController::class, 'process_statuses']);
+    Route::get('/process-status', [ParserController::class, 'process_status']);
 });

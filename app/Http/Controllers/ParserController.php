@@ -91,4 +91,14 @@ class ParserController extends Controller
             'status'=>200,
             'body'=>$user->python_processes] );
     }
+
+    public function process_status(Request $request) {
+        if(!$user = $request->user()) {
+            response()->json(['status'=>401]);
+        }
+
+        return response()->json([
+            'status'=>200,
+            'body'=>$user->python_processes->where('process_id', $request->id)->first()] );
+    }
 }

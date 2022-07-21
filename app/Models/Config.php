@@ -21,6 +21,6 @@ class Config extends Model
      * @var array
      */
     protected $fillable = [
-        'avito_data', 'process_id', 'user_id', 'status'
+        'avito_data', 'process_id', 'user_id', 'status', 'python_message'
     ];
 }
